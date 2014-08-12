@@ -1,0 +1,81 @@
+<div class="jumbotron">
+    <div class="btn-group">
+        <button class="btn btn-default" ng-click="getAll()">get all</button>
+        <button class="btn btn-success" ng-click="new()">new</button>
+<!--
+        <button class="btn btn-warning" ng-click="query()">query</button>
+        <button class="btn btn-danger" ng-click="remove()">remove</button>
+        <button class="btn btn-danger" ng-click="delete()">delete</button>
+-->
+    </div>
+</div>
+
+<div class="well">
+<!--    {{cleanCopy | json}}-->
+    <table class=table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Age</th>
+            </tr>
+        </thead>
+        <tbody ng-if="tests.length > 0">
+            <tr ng-repeat="test in tests" ng-class="{ 'success' : test.$$editMode }">
+                <td>
+                    <button class="btn btn-link btn-xs"
+                            ng-click="delete(test)"
+                            ng-show="!test.$$editMode">
+                        <i class="glyphicon glyphicon-trash"></i>
+                    </button>
+                    
+                    <button class="btn btn-link btn-xs"
+                            ng-show="!test.$$editMode"
+                            ng-click="startEdit(test)">
+                        <i class="glyphicon glyphicon-pencil"></i>
+                    </button>
+                    
+                    <button class="btn btn-success btn-xs"
+                            ng-show="test.$$editMode"
+                            ng-click="saveEdit(test)">
+                        Save
+                    </button>
+                    
+                    <button class="btn btn-link btn-xs"
+                            ng-show="test.$$editMode"
+                            ng-click="cancelEdit(test)">
+                        Cancel
+                    </button>
+                    
+                </td>
+                <td>
+                    <span ng-if="!test.$$editMode">{{test.firstName}}</span>
+                    <span ng-if="test.$$editMode">
+                        <input class="form-control" ng-model="test.firstName" />
+                    </span>
+                </td>
+                <td>
+                    <span ng-if="!test.$$editMode">{{test.lastName}}</span>
+                    <span ng-if="test.$$editMode">
+                        <input class="form-control" ng-model="test.lastName" />
+                    </span>
+                </td>
+                <td>
+                    <span ng-if="!test.$$editMode">{{test.age}}</span>
+                    <span ng-if="test.$$editMode">
+                        <input class="form-control" type="number" to-number ng-model="test.age" />
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+        <tbody ng-if="tests.length == 0">
+            <tr>
+                <td colspan="4">
+                    No records.
+                </td>
+            </tr>
+        </tbody>
+        
+    </div>
+    

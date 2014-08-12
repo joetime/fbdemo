@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="panel panel-default">
+    <div class="panel-heading">Add Team</div>
+    <div class="panel-body">
+      <form class="form" method="post" ng-submit="addTeam()" name="addForm">
+          
+        <div class="form-group" 
+             ng-class="{ 'has-success' : addForm.$valid && addForm.$dirty, 'has-error' : addForm.$invalid && addForm.$dirty }">
+            
+            <input class="form-control" 
+                   type="text" 
+                   name="teamCity" 
+                   ng-model="teamCity" 
+                   placeholder="Enter team city" 
+                   required 
+                   autofocus>
+            <input class="form-control" 
+                   type="text" 
+                   name="teamName" 
+                   ng-model="teamName" 
+                   placeholder="Enter team name" 
+                   required 
+                   autofocus>
+            <input class="form-control" 
+                   type="text" 
+                   name="teamAbbr" 
+                   ng-model="teamAbbr" 
+                   placeholder="Enter team abbreviation" 
+                   required 
+                   autofocus>
+            <img ng-src="http://i.nflcdn.com/static/site/5.33/img/logos/teams-matte-80x53/{{teamAbbr}}.png" />
+            
+            <div class="help-block text-danger" ng-if="addForm.$dirty" ng-messages="addForm.$error">
+            <div ng-message="required">Team name is required.</div>
+          </div>
+        </div>
+        <button class="btn btn-primary" type="submit" ng-disabled="addForm.$invalid">Add</button>
+      </form>
+    </div>
+  </div>
+</div>

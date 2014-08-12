@@ -1,0 +1,73 @@
+<h3>{{games.length}} games</h2>
+<!--
+<button class="btn btn-default" ng-click="matchGames()">Match</button>
+<button class="btn btn-default" ng-click="saveAll()">Save</button>
+-->
+
+<div>
+    <div class="btn-group">
+<!--
+    <button class="btn btn-default"
+            ng-click="resetWeekFilter()"
+            ng-class="{ 'btn-success': weekFilter==0 }">
+        All Games</button>
+-->
+    <button class="btn btn-default"
+            ng-repeat="weekNumber in weeks"
+            ng-click="$parent.weekFilter=weekNumber" 
+            ng-class="{ 'btn-success': $parent.weekFilter==weekNumber }">
+            <span ng-if="weekNumber==1">Week </span>
+        {{weekNumber}}</button>
+    </div>
+</div>
+
+<table class="table small table-condensed table-hover">
+    <thead>
+        <tr>
+            <th colspan="6" class="text-center"></th>
+            <th colspan="2" class="text-center">Odds</th>
+            <th colspan="2" class="text-center">Score</th>
+        </tr>
+        <tr>
+        <th>Week</th>
+            <th>Visitor</th>
+            <th>@</td>
+            <th>Home</th>
+            <th>Kickoff</th>
+            <th></th>
+            <th>Favorite</th>
+            <th>Spread</th>
+            
+            <th>Home</th>
+            <th>Away</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr ng-repeat="game in games | filter:gameFilters" ng-class="{ 'success' : game.$$checked }">
+            <td>{{game.weekNumber}}</td>
+            <td>{{game.awayAbbr}}</td>
+            <td>@</td>
+            <td>{{game.homeAbbr}}</td>
+            <td>{{game.kickoff | gameTime}}</td>
+            <td><small class="text-muted">{{game.kickoff | fromNow }}</small></td>
+            
+            <td><select ng-model="game.favorite" class="form-control">
+                    <option value=''> - </option>
+                    <option ng-value='game.homeTeam'> {{game.homeAbbr}} </option>
+                    <option ng-value='game.awayTeam'> {{game.awayAbbr}} </option>
+                </select>
+            </td>
+            <td><select ng-model="game.spread" class="form-control">
+                    <option ng-repeat="val in spreadValues">{{val}}</option>
+                </select></td>
+            
+            <td><select ng-model="game.homeScore" class="form-control">
+                    <option ng-repeat="val in scoreValues">{{val}}</option>
+                </select></td>
+            <td><select ng-model="game.awayScore" class="form-control">
+                    <option ng-repeat="val in scoreValues">{{val}}</option>
+                </select></td>
+            
+            </tr>
+    </tbody>
+</table>

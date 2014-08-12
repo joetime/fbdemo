@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html ng-app="MyApp">
+<head>
+  <base href="/">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>KFP</title>
+  <link rel="icon" type="image/png" href="images/american-football-ball-icon.png"/>
+    
+  <link href="stylesheets/style.css" rel="stylesheet">
+   
+<body>
+
+    <div class="navbar navbar-default navbar-static-top"
+         role="navigation" bs-navbar>
+      <div class="navbar-header">
+        <a class="navbar-brand" href="/">
+          <span><img src="images/american-football-ball-icon.png" height="18px" /></span>
+          KF<strong>Pool</strong></a>
+      </div>
+      <ul class="nav navbar-nav">
+        
+          <li data-match-route="/teams"><a href="/teams">Teams</a></li>
+          <li data-match-route="/games"><a href="/games">Games</a></li>
+          <li data-match-route="/users"><a href="/users">Users</a></li>
+      </ul>
+      <ul class="nav navbar-nav pull-right" ng-if="!currentUser">
+        <li data-match-route="/login"><a href="/login">Login</a></li>
+        <li data-match-route="/signup"><a href="/signup">Sign up</a></li>
+      </ul>
+      <ul class="nav navbar-nav pull-right" ng-if="currentUser">
+        <li class="navbar-text" ng-bind="currentUser.email"></li>
+        <li><a href="javascript:void(0)" ng-click="logout()">Logout</a></li>
+      </ul>
+    </div>
+    
+    <div class="container">
+    
+<div ng-view></div>
+
+        </div>
+        
+    <script src="app.min.js"></script>
+<!--
+    <script src="vendor/angular.js"></script>
+    <script src="vendor/angular-strap.js"></script>
+    <script src="vendor/angular-strap.tpl.js"></script>
+    <script src="vendor/angular-messages.js"></script>
+    <script src="vendor/angular-resource.js"></script>
+    <script src="vendor/angular-route.js"></script>
+    <script src="vendor/angular-cookies.js"></script>
+    <script src="vendor/moment.min.js"></script>
+    <script src="resource.js"></script>
+    
+    <script src="app.js"></script>
+    
+    <script scr="schedule.js"></script>
+    
+    <script src="controllers/home.js"></script>
+    <script src="controllers/add.js"></script>
+    <script src="controllers/teams.js"></script>
+    <script src="controllers/gamesCtrl.js"></script>
+    <script src="controllers/usersCtrl.js"></script>
+    
+    <script src="services/team.js"></script>
+    
+    <script src="directives/team-box.js"></script>
+    
+    <script src="filters/fromNow.js"></script>
+-->
+    
+</body>
+</html>
