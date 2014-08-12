@@ -13,7 +13,7 @@ function initRoutes(app, MongooseModel, urlBase) {
         log('GET all');
         
         var params = req.query;
-        params.deleted = false;
+        if (!params.deleted) params.deleted = false;
         
         console.log(params);
         
@@ -67,14 +67,21 @@ function initRoutes(app, MongooseModel, urlBase) {
     // DELETE one record
     app.delete(url + '/:id', function(req, res, next) {
         log(' DELETE one record');
-        log('req.params:', req.params);
         
         MongooseModel.findById(req.params.id, function (err, record) {
             
-            // not truly deleting, just setting deleted flag
-            record.deleted = true;
-            record.save(err);
-            
+            if (req.query.erase) {
+                console.log('Delete permanently...');
+                MongooseModel.remove({ _id: req.params.id }, function (err) {
+                    if (err) return next(err);
+                    res.send(200);
+                });
+            }
+            else {
+                // not truly deleting, just setting deleted flag
+                record.deleted = true;
+                record.save(err);
+            }
             if (err) return next(err);
             res.send(200);
         });

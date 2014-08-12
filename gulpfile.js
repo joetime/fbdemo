@@ -9,8 +9,8 @@ var templateCache = require('gulp-angular-templatecache');
 gulp.task('sass', function() {
   gulp.src( //'public/stylesheets/style.scss',
           'public/stylesheets/*.scss')
+    .pipe(plumber())  
     .pipe(concat('style.css'))
-    .pipe(plumber())
     .pipe(sass())
     .pipe(csso())
     .pipe(gulp.dest('public/stylesheets'));
@@ -37,4 +37,4 @@ gulp.task('watch', function() {
   gulp.watch(['public/**/*.js', '!public/app.min.js', '!public/templates.js', '!public/vendor'], ['compress']);
 });
 
-gulp.task('default', ['sass', 'compress', 'watch']);
+gulp.task('default', ['sass','compress', 'watch']);

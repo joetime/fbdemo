@@ -1,6 +1,10 @@
 angular.module('MyApp')
-  .controller('UsersCtrl', ['$scope', 'User', function($scope, User) {
+  .controller('UsersCtrl', ['$rootScope', '$location', '$scope', 'User', 
+                            function($rootScope, $location, $scope, User) {
 
+    if(!$rootScope.currentUser || $rootScope.currentUser.role != 'admin')
+          $location.path('/login');
+      
     $scope.users = User.query();
     
     $scope.getAll = function () {

@@ -12,28 +12,7 @@
    
 <body>
 
-    <div class="navbar navbar-default navbar-static-top"
-         role="navigation" bs-navbar>
-      <div class="navbar-header">
-        <a class="navbar-brand" href="/">
-          <span><img src="images/american-football-ball-icon.png" height="18px" /></span>
-          KF<strong>Pool</strong></a>
-      </div>
-      <ul class="nav navbar-nav">
-        
-          <li data-match-route="/teams"><a href="/teams">Teams</a></li>
-          <li data-match-route="/games"><a href="/games">Games</a></li>
-          <li data-match-route="/users"><a href="/users">Users</a></li>
-      </ul>
-      <ul class="nav navbar-nav pull-right" ng-if="!currentUser">
-        <li data-match-route="/login"><a href="/login">Login</a></li>
-        <li data-match-route="/signup"><a href="/signup">Sign up</a></li>
-      </ul>
-      <ul class="nav navbar-nav pull-right" ng-if="currentUser">
-        <li class="navbar-text" ng-bind="currentUser.email"></li>
-        <li><a href="javascript:void(0)" ng-click="logout()">Logout</a></li>
-      </ul>
-    </div>
+    <fb-nav-bar></fb-nav-bar>
     
     <div class="container">
     
